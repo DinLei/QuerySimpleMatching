@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+	<springProperty name="appName" source="search.service.name"/>
+	<springProperty name="env" source="spring.profiles.active"/>
+    <contextName>${appName}</contextName>
+	
+    <include resource="properties/logback-common.xml" optional="true"/>
+</configuration>

@@ -1,0 +1,33 @@
+<included>
+ 	<!--输出到控制台-->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder>
+	        <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{} - %msg%n</pattern>
+	    </encoder>
+	</appender>
+	<!--输出到文件-->
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>logback.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <fileNamePattern>logback.%d{yyyy-MM-dd}.log</fileNamePattern>
+	    </rollingPolicy>
+	    <encoder>
+	        <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{} - %msg%n</pattern>
+	    </encoder>
+	</appender>
+
+    <!--<appender name="fluent" class="ch.qos.logback.more.appenders.FluentLogbackAppender">-->
+        <!--<tag>graylog2</tag>-->
+		<!--<label>test</label>-->
+        <!--<remoteHost>bg.graylog</remoteHost>-->
+        <!--<port>24224</port>-->
+        <!--<maxQueueSize>20</maxQueueSize>-->
+    <!--</appender>-->
+
+    <root level="DEBUG">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+        <!--<appender-ref ref="fluent" />-->
+    </root>
+
+</included>
