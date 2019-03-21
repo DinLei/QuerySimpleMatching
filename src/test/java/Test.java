@@ -13,6 +13,10 @@ public class Test {
                 new StringReader(""),
                 true
         );
+
+        String s1 = "勘探工程师tosat";
+        String s2 = "勘探工程师tosat 其他 新疆 昌吉 博士 北京裕德成科贸有限公司-GFQ 不限 ####  岗位职责包括：1、配合客户运用先进的找矿仪器探索发现新的找矿方法。2、能适应公司客户要求，出差采集科研数据，为客户提供配套技术服务。3、收集、整理、研究矿产资源信息。4、能完成领导交派的其它工作 tosat";
+
 //        Lexeme lex;
 //        while((lex=ikSegmenter.next())!=null){
 //            System.out.print(lex.getLexemeText()+" ");
@@ -26,27 +30,18 @@ public class Test {
 //        }
 
         List<String> sourceToken = StrUtils.sentenceSegment(
-                "安卓Java工程架构师, 出色的Java工程能力, 热爱java工程",
+                s1,
                 ikSegmenter
         );
 
         List<String> targetToken = StrUtils.sentenceSegment(
-                "Java工程",
+                "勘探工程师",
                 ikSegmenter
         );
 
+        for (String s: sourceToken) System.out.println(s);
+        int num = BMMatching.match(sourceToken,targetToken);
 
-        int num = BMMatching.match(
-                sourceToken,
-                targetToken);
-
-
-        for (String s: sourceToken) {
-            System.out.println(s);
-        }
-
-        System.out.println(
-                "num:" + num
-        );
+        System.out.println("num:" + num);
     }
 }

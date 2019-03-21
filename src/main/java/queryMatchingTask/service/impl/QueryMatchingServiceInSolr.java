@@ -3,10 +3,11 @@ package queryMatchingTask.service.impl;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import org.wltea.analyzer.core.IKSegmenter;
-import queryMatchingTask.repository.JDSolrDao;
+import queryMatchingTask.repository.IJdSolrDao;
+import queryMatchingTask.repository.impl.JdSolrDaoImpl;
 import queryMatchingTask.service.IQueryMatchingService;
-import queryMatchingTask.utils.JDUtil;
 import queryMatchingTask.utils.SolrCore;
 import queryMatchingTask.utils.StrUtils;
 import queryMatchingTask.utils.Utils;
@@ -17,11 +18,12 @@ import java.io.StringReader;
 import java.util.List;
 import java.util.Map;
 
+@Service("jdSolr")
 public class QueryMatchingServiceInSolr implements IQueryMatchingService {
     private final static Logger LOGGER = LoggerFactory.getLogger(QueryMatchingServiceInSolr.class);
 
-    @Resource(name = "solrIndexSearch")
-    private JDSolrDao jdSolrDao;
+    @Resource(name="JDSolrDaoImpl")
+    private IJdSolrDao jdSolrDaoImpl;
 
     private static IKSegmenter ikSegmenter = new IKSegmenter(
             new StringReader(""), true);
@@ -38,9 +40,8 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
         String target = StrUtils.stringRegular(query);
         List<String> targetTokens = StrUtils.sentenceSegment(target, ikSegmenter);
 
-        Map<String, Map<String, String>> JDs = jdSolrDao.jdSearchByCompanyId(
-                queryKey, companyId, num,
-                fl, sortedBy, collection);
+        Map<String, Map<String, String>> JDs = jdSolrDaoImpl.jdSearchByCompanyId(
+                queryKey, companyId, num, fl, sortedBy, collection);
 
         for (Map.Entry<String, Map<String, String>> jdEntry: JDs.entrySet()) {
             int tmpScore = 0;

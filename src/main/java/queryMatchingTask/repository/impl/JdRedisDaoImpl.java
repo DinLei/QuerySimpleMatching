@@ -1,22 +1,23 @@
-package queryMatchingTask.repository;
+package queryMatchingTask.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import queryMatchingTask.repository.IJdRedisDao;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.Set;
 
 @Service
-public class JDDaoImpl implements JDDao {
+public class JdRedisDaoImpl implements IJdRedisDao {
 
     private RedisTemplate<String, String> redisTemplate;
     private HashOperations<String, String, String> hashOps;
 
     @Autowired
-    public JDDaoImpl(RedisTemplate<String, String> redisTemplate){
+    public JdRedisDaoImpl(RedisTemplate<String, String> redisTemplate){
         this.redisTemplate = redisTemplate;
     }
 

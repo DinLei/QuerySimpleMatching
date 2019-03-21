@@ -3,7 +3,7 @@ package queryMatchingTask.repository;
 import java.util.Map;
 import java.util.Set;
 
-public interface JDDao {
+public interface IJdRedisDao {
 
     String getJD(String companyId, String jdId);
 

@@ -2,9 +2,7 @@ package queryMatchingTask.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.wltea.analyzer.core.IKSegmenter;
-import queryMatchingTask.matchingAlgorithm.BMMatching;
-import queryMatchingTask.matchingAlgorithm.SubSetMatching;
-import queryMatchingTask.repository.JDDaoImpl;
+import queryMatchingTask.repository.impl.JdRedisDaoImpl;
 import queryMatchingTask.service.IQueryMatchingService;
 import queryMatchingTask.utils.JDUtil;
 import queryMatchingTask.utils.StrUtils;
@@ -17,11 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service
+@Service("jdRedis")
 public class QueryMatchingServiceInRedis implements IQueryMatchingService {
 
     @Resource
-    private JDDaoImpl jdDao;
+    private JdRedisDaoImpl jdDao;
 
     private static IKSegmenter ikSegmenter = new IKSegmenter(
             new StringReader(""), true);

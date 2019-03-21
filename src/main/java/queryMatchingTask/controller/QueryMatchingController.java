@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import queryMatchingTask.response.ServerResponse;
 import queryMatchingTask.response.StatusCode;
 import queryMatchingTask.service.IQueryMatchingService;
+import queryMatchingTask.service.impl.QueryMatchingServiceInSolr;
 import queryMatchingTask.utils.StrUtils;
 
 import javax.annotation.Resource;
@@ -17,8 +18,10 @@ import java.io.IOException;
 public class QueryMatchingController {
     private static final Logger LOG = LoggerFactory.getLogger(QueryMatchingController.class);
 
+//    @Resource(name="${matchingService}")
+//    private IQueryMatchingService iQueryMatchingService;
     @Resource
-    private IQueryMatchingService iQueryMatchingService;
+    private QueryMatchingServiceInSolr iQueryMatchingService;
 
     @RequestMapping("/search/JDMatching")
     public ServerResponse getBestMatchingJDId(String companyId, String query) {
