@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Service("jdSolr")
 public class QueryMatchingServiceInSolr implements IQueryMatchingService {
-    private final static Logger LOGGER = LoggerFactory.getLogger(QueryMatchingServiceInSolr.class);
+    private final static Logger LOG = LoggerFactory.getLogger(QueryMatchingServiceInSolr.class);
 
     @Resource(name="JDSolrDaoImpl")
     private IJdSolrDao jdSolrDaoImpl;
@@ -61,6 +61,6 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
                 maxScore = tmpScore;
             }
         }
-        return resJdId;
+        return (maxScore>0) ? resJdId : "";
     }
 }

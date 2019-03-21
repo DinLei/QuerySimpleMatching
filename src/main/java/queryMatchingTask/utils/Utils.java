@@ -10,8 +10,10 @@ public class Utils {
             List<String> sourceTokens,
             List<String> targetTokens) {
         int totalMatch = BMMatching.match(sourceTokens, targetTokens);
-        int lcSeqMatch = (SubSetMatching.getLCSeq(targetTokens, sourceTokens)>0) ? 1 : 0;
-        int lcStrMatch = (SubSetMatching.getLCStr(targetTokens, sourceTokens)>1) ? 1 : 0;
-        return 30*totalMatch + 20*lcSeqMatch + 10*lcStrMatch;
+        int lcSeqMatch = SubSetMatching.getLCSeq(targetTokens, sourceTokens);
+
+        int lcStrLen = SubSetMatching.getLCStr(targetTokens, sourceTokens);
+        int lcStrMatch = (lcStrLen > 1) ? lcStrLen : 0;
+        return 3*totalMatch + 2*lcSeqMatch + lcStrMatch;
     }
 }

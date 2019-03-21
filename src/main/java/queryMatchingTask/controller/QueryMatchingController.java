@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import queryMatchingTask.response.ServerResponse;
 import queryMatchingTask.response.StatusCode;
 import queryMatchingTask.service.IQueryMatchingService;
-import queryMatchingTask.service.impl.QueryMatchingServiceInSolr;
 import queryMatchingTask.utils.StrUtils;
 
 import javax.annotation.Resource;
