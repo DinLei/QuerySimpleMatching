@@ -18,10 +18,8 @@ import java.io.IOException;
 public class QueryMatchingController {
     private static final Logger LOG = LoggerFactory.getLogger(QueryMatchingController.class);
 
-//    @Resource(name="${matchingService}")
-//    private IQueryMatchingService iQueryMatchingService;
-    @Resource
-    private QueryMatchingServiceInSolr iQueryMatchingService;
+    @Resource(name="jdSolr")
+    private IQueryMatchingService iQueryMatchingService;
 
     @RequestMapping("/search/JDMatching")
     public ServerResponse getBestMatchingJDId(String companyId, String query) {
