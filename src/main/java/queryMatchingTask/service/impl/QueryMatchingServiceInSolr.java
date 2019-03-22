@@ -36,7 +36,7 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
 
     public String bestMatchingJD(String companyId, String query) throws IOException, SolrServerException {
         String resJdId = null;
-        int maxScore = -1;
+        double maxScore = -1.0;
         String target = StrUtils.stringRegular(query);
         List<String> targetTokens = StrUtils.sentenceSegment(target, ikSegmenter);
 
@@ -44,7 +44,7 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
                 queryKey, companyId, num, fl, sortedBy, collection);
 
         for (Map.Entry<String, Map<String, String>> jdEntry: JDs.entrySet()) {
-            int tmpScore = 0;
+            double tmpScore = 0.0;
             String tmpId = jdEntry.getKey();
             Map<String, String> tmpJd = jdEntry.getValue();
             String title = StrUtils.stringRegular(tmpJd.get("title"));
@@ -53,9 +53,17 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
             List<String> titleTokens = StrUtils.sentenceSegment(title, ikSegmenter);
             List<String> descTokens = StrUtils.sentenceSegment(desc, ikSegmenter);
 
-            tmpScore += Utils.getMatchingScore(titleTokens, targetTokens);
-            tmpScore += Utils.getMatchingScore(descTokens, targetTokens) * 0.5;
+            double titleScore = Utils.getMatchingScore(titleTokens, targetTokens);
+            double descScore = Utils.getMatchingScore(descTokens, targetTokens);
 
+            tmpScore = titleScore + 0.5 * descScore;
+
+            LOG.debug(
+                    String.format(
+                            "CurrJdNO:%s + CurrTitle:%s: titleScore: %s & descScore: %s",
+                            tmpId, title, titleScore, descScore
+                    )
+            );
             if (tmpScore > maxScore) {
                 resJdId = tmpId;
                 maxScore = tmpScore;

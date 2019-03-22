@@ -16,6 +16,7 @@ public class StatusCode {
     public static final int EMPTY_COMPANY_ID = 10001;
     public static final int EMPTY_QUERY = 10002;
     public static final int SERVER_ERROR = -1;
+    public static final int SOLR_ERROR = 10003;
 
 
     private static Map<Integer, String> code2Message;
@@ -25,6 +26,7 @@ public class StatusCode {
         code2Message.put(EMPTY_COMPANY_ID, "公司ID参数为空！");
         code2Message.put(EMPTY_QUERY, "搜索查询词为空！");
         code2Message.put(SERVER_ERROR, "服务器出错！");
+        code2Message.put(SOLR_ERROR, "SOLR查询出差！");
 
         code2Message = Collections.unmodifiableMap(code2Message);
     }

@@ -6,7 +6,7 @@ import queryMatchingTask.matchingAlgorithm.SubSetMatching;
 import java.util.List;
 
 public class Utils {
-    public static int getMatchingScore(
+    public static double getMatchingScore(
             List<String> sourceTokens,
             List<String> targetTokens) {
         int totalMatch = BMMatching.match(sourceTokens, targetTokens);
@@ -14,6 +14,6 @@ public class Utils {
 
         int lcStrLen = SubSetMatching.getLCStr(targetTokens, sourceTokens);
         int lcStrMatch = (lcStrLen > 1) ? lcStrLen : 0;
-        return 3*totalMatch + 2*lcSeqMatch + lcStrMatch;
+        return 15*totalMatch + (2*lcSeqMatch + lcStrMatch) * 1.0 / targetTokens.size();
     }
 }

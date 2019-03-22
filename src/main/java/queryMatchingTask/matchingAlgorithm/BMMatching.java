@@ -43,12 +43,12 @@ public class BMMatching {
         int tLen = targetTokens.size();
 //        LOG.debug(String.format("sLen:%s, tLen:%s", sLen, tLen));
         
-        if (sLen < tLen) return -1;
+        if (sLen < tLen) return 0;
 
         int i = tLen;
         int j;
         
-        while ((i+newStartPos) <= sLen && newStartPos < (sLen-tLen)) {
+        while ((i+newStartPos) <= sLen && newStartPos <= (sLen-tLen)) {
             j = tLen;
 //            // S[i-1]与T[j-1]若匹配，则进行下一组比较；反之离开循环。
 //            LOG.debug(String.format(
