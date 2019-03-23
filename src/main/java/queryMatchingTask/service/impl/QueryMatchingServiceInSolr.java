@@ -44,26 +44,19 @@ public class QueryMatchingServiceInSolr implements IQueryMatchingService {
                 queryKey, companyId, num, fl, sortedBy, collection);
 
         for (Map.Entry<String, Map<String, String>> jdEntry: JDs.entrySet()) {
-            double tmpScore = 0.0;
             String tmpId = jdEntry.getKey();
             Map<String, String> tmpJd = jdEntry.getValue();
-            String title = StrUtils.stringRegular(tmpJd.get("title"));
-            String desc = StrUtils.stringRegular(tmpJd.get("desc"));
 
-            List<String> titleTokens = StrUtils.sentenceSegment(title, ikSegmenter);
-            List<String> descTokens = StrUtils.sentenceSegment(desc, ikSegmenter);
+            List<String> titleTokens = StrUtils.sentenceSegment(
+                    StrUtils.stringRegular(tmpJd.get("title")), ikSegmenter);
+            List<String> descTokens = StrUtils.sentenceSegment(
+                    StrUtils.stringRegular(tmpJd.get("desc")), ikSegmenter);
 
             double titleScore = Utils.getMatchingScore(titleTokens, targetTokens);
             double descScore = Utils.getMatchingScore(descTokens, targetTokens);
 
-            tmpScore = titleScore + 0.5 * descScore;
+            double tmpScore = titleScore + 0.5 * descScore;
 
-            LOG.debug(
-                    String.format(
-                            "CurrJdNO:%s + CurrTitle:%s: titleScore: %s & descScore: %s",
-                            tmpId, title, titleScore, descScore
-                    )
-            );
             if (tmpScore > maxScore) {
                 resJdId = tmpId;
                 maxScore = tmpScore;

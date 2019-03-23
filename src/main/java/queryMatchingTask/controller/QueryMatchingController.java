@@ -25,7 +25,7 @@ public class QueryMatchingController {
 
         String candidateJD="";
 
-        LOG.debug("JDMatching接口收到参数: companyId=" + companyId + " query=" + query);
+        LOG.info("JDMatching接口收到参数: companyId=" + companyId + " query=" + query);
 
         if (StrUtils.isBlank(companyId)) {
             LOG.info("请求的公司ID为空！");

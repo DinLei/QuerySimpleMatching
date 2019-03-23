@@ -14,6 +14,6 @@ public class Utils {
 
         int lcStrLen = SubSetMatching.getLCStr(targetTokens, sourceTokens);
         int lcStrMatch = (lcStrLen > 1) ? lcStrLen : 0;
-        return 15*totalMatch + (2*lcSeqMatch + lcStrMatch) * 1.0 / targetTokens.size();
+        return 15*totalMatch + (lcSeqMatch + 2*lcStrMatch) * 1.0 / targetTokens.size();
     }
 }

@@ -7,7 +7,7 @@
 	</appender>
 	<!--输出到文件-->
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-	    <file>logback.log</file>
+	    <file>queryMatching.log</file>
 	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 	        <fileNamePattern>logback.%d{yyyy-MM-dd}.log</fileNamePattern>
 	    </rollingPolicy>

@@ -10,10 +10,10 @@ public class Test2 {
     public static void main(String[] args) throws IOException {
         IKSegmenter ikSegmenter = new IKSegmenter(
                 new StringReader(""),
-                true
+                false
         );
 
-        String t1 = "小学语文辅导老师";
+        String t1 = "、、.-+";
         String s2 = "小学语文辅导老师";
 
         List<String> targetToken = StrUtils.sentenceSegment(
@@ -25,6 +25,8 @@ public class Test2 {
                 s2,
                 ikSegmenter
         );
+
+        for (String token: targetToken) System.out.println(token);
 
         int num = BMMatching.match(sourceToken1,targetToken);
         System.out.println(num);

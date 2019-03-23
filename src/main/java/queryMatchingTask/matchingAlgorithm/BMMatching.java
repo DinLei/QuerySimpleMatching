@@ -42,15 +42,21 @@ public class BMMatching {
         int sLen = sourceTokens.size();
         int tLen = targetTokens.size();
 //        LOG.debug(String.format("sLen:%s, tLen:%s", sLen, tLen));
+
+        if (sLen <= 0 || tLen <= 0) {
+            return 0;
+        }
         
-        if (sLen < tLen) return 0;
+        if (sLen < tLen) {
+            return 0;
+        }
 
         int i = tLen;
         int j;
         
         while ((i+newStartPos) <= sLen && newStartPos <= (sLen-tLen)) {
             j = tLen;
-//            // S[i-1]与T[j-1]若匹配，则进行下一组比较；反之离开循环。
+            // S[i-1]与T[j-1]若匹配，则进行下一组比较；反之离开循环。
 //            LOG.debug(String.format(
 //                    "i:%s, j:%s, newStartPos:%s", i, j, newStartPos));
             while (j > 0 && sourceTokens.get(i-1+newStartPos).equals(targetTokens.get(j-1))) {
