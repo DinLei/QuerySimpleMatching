@@ -1,8 +1,8 @@
 import org.wltea.analyzer.core.IKSegmenter;
-import queryMatchingTask.matchingAlgorithm.BMMatching;
-import queryMatchingTask.matchingAlgorithm.SubSetMatching;
-import queryMatchingTask.utils.StrUtils;
-import queryMatchingTask.utils.Utils;
+import com.zhaopin.algorithm.queryMatchingTask.matchingAlgorithm.BMMatching;
+import com.zhaopin.algorithm.queryMatchingTask.matchingAlgorithm.SubSetMatching;
+import com.zhaopin.algorithm.queryMatchingTask.utils.StrUtils;
+import com.zhaopin.algorithm.queryMatchingTask.utils.Utils;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -13,29 +13,30 @@ public class Test {
     public static void main(String[] args) throws IOException {
         IKSegmenter ikSegmenter = new IKSegmenter(
                 new StringReader(""),
-                true
+                false
         );
 
-        String t1 = "专利代理人助理";
-        String s2 = "专利代理人助理";
-        String s3 = "专利代理人助理（实习生）";
+        String t1 = "人工智能";
+        String t2 = "深度学习";
 
-        String d1 = "专利代理人助理 知识产权/专利顾问/代理人 湖北 武汉 北京恒博知识产权代理有限公司 民营 专业服务/咨询(财会/法律/人力资源等) 其他 ####   1  、国内正规院校毕业，通信、电子、电学专业，本科或以上学历。        2  、了解知识产权行业，有志从事代理行业。        3  、对专利申请的撰写有一定基础，学习能力强。        4  、具备一定的英语水平。        5  、工作认真、勤奋，能够承受一定工作压力，有良好的团队协作能力。        6  、薪资可面议。      ";
-        String d2 = "专利代理人助理（实习生） 知识产权/专利顾问/代理人 湖北 武汉 本科 北京恒博知识产权代理有限公司 民营 专业服务/咨询(财会/法律/人力资源等) 其他 ####   1、国内正规院校，通信、电子、电学专业，本科以上学历。  2、了解知识产权行业，有志从事代理专业。  3、对专利申请的撰写有一定基础，学习能力强。  4、具备一定的英语水平。  5、工作认真、勤奋、能够承受一定的压力，有良好的团队协作能力。  6、薪资面议     ";
+        String s1 = "人工智能专家（研发部影像所）";
+        String s2 = "人工智能算法工程师";
 
+        String d1 = "人工智能专家（研发部影像所） 软件工程师 山东 青岛 青岛海信医疗设备有限公司 国企 医疗设备/器械 #### 职位描述：负责医疗影像相关算法的研发，解决医学影像中的目标检测、分类、识别、分割等问题；医疗影像领域的业务市场调研、业务理解、研发落地和应用，同时协同相关方进行医学数据获取、标注、评估工作；能够从技术角度识别业务的前瞻性方向，并引导团队实现。 任职要求：    1.学历：全日制本科及以上，博士优先；    2.专业：计算机类专业优先；    3.工作经验：毕业两年以上；有相关工作经验者优先。   ";
+        String d2 = "人工智能算法工程师 算法工程师 山东 青岛 青岛海信医疗设备有限公司 国企 医疗设备/器械 ####            职位名称：人工智能算法工程师        招聘人数： 2    人              职位描述：      1． 设计与开发先进的深度学习及计算机视觉算法，进行二维/三维医学影像处理。核心算法包括：病灶检测、识别、图像配准、图像分割、信息检索等；    2． 实现并优化医学影像产品所需的核心算法，可以在GPU、CPU及云平台部署；       3． 与客户沟通，分析客户需求，定义人工智能在医学影像以及医院信息化系统中的应用场景；    4      参与调研产品的需求分析报告编写。            招聘要求：        1、学历： 硕士研究生以上      2、专业： 计算机/电子工程/统计学      3、工作经验： 相关专业博士学位，拥有    2     年以上算法开发经验的硕士学位       4、知识要求：拥有计算机视觉及机器学习领域的深厚经验，对神经网络及相关数学基础有着深入理解；学术论文发表于先进会议及期刊或者有成功的产业经验；精通C    /C++     、     Python及Matlab语言     。       5、能力要求：优秀的沟通及表达技巧。            工作地点：   青岛新研发中心       ";
+
+        List<String> targetToken = StrUtils.sentenceSegment(
+                t1,
+                ikSegmenter
+        );
 
         List<String> sourceToken1 = StrUtils.sentenceSegment(
-                d1,
+                s1,
                 ikSegmenter
         );
 
         List<String> sourceToken2 = StrUtils.sentenceSegment(
-                d2,
-                ikSegmenter
-        );
-
-        List<String> targetToken = StrUtils.sentenceSegment(
-                t1,
+                s2,
                 ikSegmenter
         );
 
